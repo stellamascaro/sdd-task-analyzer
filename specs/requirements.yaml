@@ -1,0 +1,44 @@
+project: sdd-taskanalyzer
+module: TaskAnalyzer
+author: Stella Cardoso de Campos Mascaro
+python: ">=3.11"
+public_api:
+  - name: analyze_tasks
+    signature: "analyze_tasks(tasks: list[dict[str, Any]]) -> dict[str, Any]"
+  - name: TaskValidationError
+    base: ValueError
+functional_requirements:
+  - id: RF-01
+    description: Receber lista de tarefas com id, titulo, prioridade, data_criacao, data_conclusao, prazo e status.
+  - id: RF-02
+    description: Calcular total_tarefas, total_concluidas e total_pendentes.
+  - id: RF-03
+    description: Calcular tempo_medio_conclusao_horas (global e por prioridade) apenas com tarefas concluidas.
+  - id: RF-04
+    description: Calcular taxa_atraso_percentual (global e por prioridade); atraso quando data_conclusao > prazo.
+  - id: RF-05
+    description: Retornar indicadores_por_prioridade para baixa, media e alta.
+  - id: RF-06
+    description: Disparar TaskValidationError para dados inconsistentes (ex. data_conclusao < data_criacao).
+  - id: RF-07
+    description: Retornar 0.0 nas medias e taxas sem tarefas concluidas (inclui lista vazia), prevenindo divisao por zero.
+non_functional_requirements:
+  - id: RNF-01
+    description: Type hints em 100 por cento das funcoes.
+  - id: RNF-02
+    description: Docstrings no padrao Google.
+  - id: RNF-03
+    description: Somente biblioteca padrao do Python (pytest apenas para testes).
+  - id: RNF-04
+    description: Processamento em memoria, sem persistencia de dados.
+  - id: RNF-05
+    description: Logs com o modulo padrao logging.
+devops_requirements:
+  - id: DEV-01
+    description: Pipeline GitHub Actions (ubuntu-latest, Python 3.11) em push e pull request nas branches main e develop.
+  - id: DEV-02
+    description: Imagem Docker baseada em python:3.11-slim com pytest como comando padrao.
+  - id: DEV-03
+    description: docker compose run --rm tests executa toda a suite isolada.
+acceptance_tests: tests/test_harness.py
+governance: CONTEXT_RULES.md
