@@ -3,7 +3,7 @@
 Módulo **TaskAnalyzer** desenvolvido com *Spec-Driven Development* (SDD) e
 assistentes de IA — Bootcamp III (CEUB EAD), Fase 2.
 
-![CI](https://github.com/SEU_USUARIO/sdd-taskanalyzer/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/stellamascaro/sdd-taskanalyzer/actions/workflows/ci.yml/badge.svg)
 
 ## Estrutura
 ```
